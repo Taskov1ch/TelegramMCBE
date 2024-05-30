@@ -1,0 +1,14 @@
+name: VkConnector
+version: 0.2.48-beta
+description: "MCPE x ВК"
+api: 3.0.0
+main: Taskovich\VkConnector\Main
+
+permissions:
+  vkconnector.secret:
+    default: op
+  vkconnector.link:
+    default: true
+
+depend:
+  - PlayedTime

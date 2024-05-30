@@ -1,0 +1,261 @@
+<?php
+
+namespace supercrafter333\PlayedTime;
+
+use DateInterval;
+use DateTime;
+use Exception;
+use JsonException;
+use pocketmine\Player;
+use pocketmine\utils\{Config, TextFormat};
+use function array_keys;
+use function print_r;
+use function strtolower;
+use const PHP_EOL;
+
+/**
+ * This class is the manager for all the time stuff. It's the most important file for other developers.
+ */
+class PlayedTimeManager
+{
+
+	private static $instance;
+	private $data_file;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		self::$instance = $this;
+		$this->data_file = new Config(PlayedTimeLoader::getInstance()->getDataFolder() . "playedTimes.json", Config::JSON);
+	}
+
+	public static function getInstance(): PlayedTimeManager
+	{
+		return self::$instance;
+	}
+
+	/**
+	 * Returns the configuration file of the played times.
+	 *
+	 * @return Config
+	 */
+	public function getConfig(): Config
+	{
+		return $this->data_file;
+	}
+
+	/**
+	 * Adds a player to the cache-array.
+	 *
+	 * @param $player
+	 * @return bool
+	 */
+	public function addPlayerToCache($player): bool
+	{
+		$name = $this->cleanName($player);
+
+		if (isset(self::$cachedPlayers[$name])) return false;
+
+		self::$cachedPlayers[$name] = new DateTime('now');
+		return true;
+	}
+
+	/**
+	 * Removes a player from the cache-array.
+	 *
+	 * @param $player
+	 * @return bool
+	 * @throws JsonException
+	 */
+	public function removePlayerFromCache($player): bool
+	{
+		if (!$this->saveFor($player)) return false;
+
+		$name = $this->cleanName($player);
+
+		if (!isset(self::$cachedPlayers[$name])) return false;
+
+		unset(self::$cachedPlayers[$name]);
+		return true;
+	}
+
+	/**
+	 * Checks if a player exists in the cache-array.
+	 *
+	 * @param $player
+	 * @return bool
+	 */
+	public function isPlayerCached($player): bool
+	{
+		return isset(self::$cachedPlayers[$this->cleanName($player)]);
+	}
+
+	/**
+	 * Returns the cache-array for each player.
+	 *
+	 * @return array
+	 */
+	public function getFullCache(): array
+	{
+		return self::$cachedPlayers;
+	}
+
+	/**
+	 * Returns the played time of a player-session.
+	 *
+	 * @param Player $player
+	 * @return DateInterval|null
+	 */
+	public function getSessionTime(Player $player): ?DateInterval
+	{
+		return $this->isPlayerCached($player) ? $this->calculateSessionTime($player) : null;
+	}
+
+	/**
+	 * Returns the total played time of a player.
+	 *
+	 * @param $player
+	 * @return DateInterval|null
+	 * @throws Exception
+	 */
+	public function getTotalTime($player): ?DateInterval
+	{
+		return $this->calculateTotalTime($player);
+	}
+
+	/**
+	 * Saves the time for a player in the time configuration file.
+	 *
+	 * @param $player
+	 * @return bool
+	 * @throws JsonException
+	 */
+	public function saveFor($player): bool
+	{
+		$name = $this->cleanName($player);
+
+		if (($tt = $this->getTotalTime($player)) === null) return false;
+
+		$this->data_file->set($name, $this->generateDateIntervalString($tt));
+		$this->data_file->save();
+		return true;
+	}
+
+	/**
+	 * Saves the time of all cached players.
+	 *
+	 * @return void
+	 * @throws JsonException
+	 */
+	public function saveAll(): void
+	{
+		foreach (array_keys(self::$cachedPlayers) as $cachedPlayer)
+			$this->saveFor($cachedPlayer);
+	}
+
+
+
+	######################################
+	########### Internal Stuff ###########
+		 #                          #
+		 #                          #
+	  #  #  #                    #  #  #
+	   # # #                      # # #
+		 #                          #
+
+	/**
+	 * @var array
+	 */
+	private static $cachedPlayers = [];
+
+	/**
+	 * @param $player
+	 * @return string
+	 */
+	private function cleanName($player): string
+	{
+		if ($player instanceof Player) $player = $player->getName();
+
+		return strtolower(TextFormat::clean($player));
+	}
+
+	/**
+	 * @param $player
+	 * @return DateInterval|null
+	 * @throws Exception
+	 */
+	private function getTimeFromConfig($player): ?DateInterval
+	{
+		$val = $this->getConfig()->get($this->cleanName($player), null);
+
+		if ($val === null) return null;
+
+		try {
+			return new DateInterval($val);
+		} catch (Exception $exception) {
+			print_r("Got ERROR: " . $exception->getMessage() . " (" . $exception->getCode() . ")" . PHP_EOL . "File(Line): " . $exception->getFile() . " (#{$exception->getLine()})");
+			return null;
+		}
+	}
+
+	/**
+	 * @param Player $player
+	 * @return DateInterval|null
+	 */
+	private function calculateSessionTime(Player $player): ?DateInterval
+	{
+		if (!$this->isPlayerCached($player)) return null;
+
+		$name = $this->cleanName($player);
+		/**@var $joined DateTime*/
+		$joined = self::$cachedPlayers[$name];
+		$now = new DateTime('now');
+
+		return $now->diff($joined);
+	}
+
+	/**
+	 * @param $player
+	 * @return DateInterval|null
+	 * @throws Exception
+	 */
+	private function calculateTotalTime($player): ?DateInterval
+	{
+		$name = $this->cleanName($player);
+		$total = $this->getTimeFromConfig($player);
+		if (is_string($player)) $player = PlayedTimeLoader::getInstance()
+			->getServer()->getPlayerExact($name);
+
+		if (!$player instanceof Player || $this->getSessionTime($player) === null) return $total;
+
+		$session = $this->getSessionTime($player);
+		if ($total === null) return $session;
+
+		$dtNow = (new DateTime('now'))->add($total);
+		$dtNow2 = new DateTime('now');
+		return $dtNow->diff($dtNow2->add($session), true);
+	}
+
+	/**
+	 * @param DateInterval $dateInterval
+	 * @return string
+	 * @throws AssumptionFailedError
+	 */
+	private function generateDateIntervalString(DateInterval $dateInterval): string
+	{
+		$str = "P";
+		if ($dateInterval->y > 0) $str .= $dateInterval->y . "Y";
+		if ($dateInterval->m > 0) $str .= $dateInterval->m . "M";
+		if ($dateInterval->d > 0) $str .= $dateInterval->d . "D";
+		if ($dateInterval->s > 0 || $dateInterval->i > 0 || $dateInterval->h > 0) $str .= "T";
+		if ($dateInterval->h > 0) $str .= $dateInterval->h . "H";
+		if ($dateInterval->i > 0) $str .= $dateInterval->i . "M";
+		if ($dateInterval->s > 0) $str .= $dateInterval->s . "S";
+
+		if ($str === "P") throw new AssumptionFailedError("DateInterval cannot be empty!");
+
+		return $str;
+	}
+}

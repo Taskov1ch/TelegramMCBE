@@ -1,0 +1,24 @@
+---
+name: PlayedTime
+version: 1.0.3
+api: 3.0.0
+main: supercrafter333\PlayedTime\PlayedTimeLoader
+author: supercrafter333
+permissions:
+  playedtime.cmd.*:
+    default: op
+    description: Bypass permission
+    children:
+      playedtime.cmd:
+        default: true
+        description: Command permission
+      playedtime.cmd.time:
+        default: true
+        description: Subcommand permission
+      playedtime.cmd.mytime:
+        default: true
+        description: Subcommand permission
+      playedtime.cmd.top:
+        default: true
+        description: Subcommand permission
+...
