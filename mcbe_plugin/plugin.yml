@@ -1,0 +1,13 @@
+name: VkConnector
+version: 0.3-beta
+api: 5.0.0
+main: Taskovich\VkConnector\Main
+
+permissions:
+  vkconnector.secret:
+    default: op
+  vkconnector.link:
+    default: true
+
+depend:
+  - PlayedTime
