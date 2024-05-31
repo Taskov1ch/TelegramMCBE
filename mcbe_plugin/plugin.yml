@@ -1,5 +1,5 @@
 name: VkConnector
-version: 0.2.48-beta
+version: 0.2.49-beta
 description: "MCBE x ВК"
 api: 5.0.0
 main: Taskovich\VkConnector\Main

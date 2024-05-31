@@ -31,11 +31,7 @@ class Main extends PluginBase {
 		]);
 		$this->saveDefaultConfig();
 		$this->linked_players = new LinkedPlayersManager($this);
-
-		if (!$this->linked_players->load()) {
-			$this->linked_players = null;
-			return;
-		}
+		$this->linked_players->load();
 	}
 
 	public function getLinkedPlayersManager(): ?LinkedPlayersManager
