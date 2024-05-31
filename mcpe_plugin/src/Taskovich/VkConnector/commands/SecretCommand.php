@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Taskovich\VkConnector\commands;
 
 use Taskovich\VkConnector\Main;
