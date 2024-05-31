@@ -6,7 +6,7 @@
 ![GitHub License](https://img.shields.io/github/license/Taskov1ch/Rcon-crossbots?style=for-the-badge&labelColor=%23000&color=red)
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Taskov1ch/VkConnector?style=for-the-badge&logo=github)
-![GitHub repo size](https://img.shields.io/github/repo-size/Taskov1ch/VkConnector?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/Taskov1ch/VkConnector?style=for-the-badge&logo=github)
 ![GitHub Release](https://img.shields.io/github/v/release/Taskov1ch/VkConnector?style=for-the-badge&logo=github)
 
 </div>
@@ -25,7 +25,7 @@
   Ещё что-то...
 
 ## Предупреждение ⚠
-Данный проект находится на этапе тестирования и может работать некорректно в некоторых местах! Если вы обнаружили ошибку или недостаток, сообщите об этом в разделе **(ISSUES)[https://github.com/Taskov1ch/VkConnector/issues]**. Спасибо за понимание!
+Данный проект находится на этапе тестирования и может работать некорректно в некоторых местах! Если вы обнаружили ошибку или недостаток, сообщите об этом в разделе **[ISSUES](https://github.com/Taskov1ch/VkConnector/issues)**. Спасибо за понимание!
 
 ## Полезные ссылки 🔗
 - [Инструкция по установке](dont_touch_me/installation.md)
