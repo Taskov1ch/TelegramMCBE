@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "vkconnector"
+name = "telegram-mcbe"
 version = "0.2.25-beta"
 description = "ВК 🤝 MCPE/BE"
 authors = ["Taskovich"]

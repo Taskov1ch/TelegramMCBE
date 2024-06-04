@@ -9,22 +9,29 @@ from typing import Optional
 
 load_dotenv()
 
-async def response(action: str, player_id: str = "") -> Optional[dict]:
+async def send_cmd(command: str) -> Optional[str]:
+	try:
+		async with Client(
+			get_config("main_config")["server_host"],
+			get_config("main_config")["server_port"],
+			getenv("rcon_pass")
+		) as rcon:
+			answer = await rcon.send_cmd(command)
+		
+		return loads(answer[0].replace("\r", ""))
+	except Exception as e:
+		return None
+
+async def response(action: str, player_id: str = "", vk_id: int = 0) -> Optional[dict]:
 	try:
 		command = {
 			"method": action,
 			"player": player_id,
-			"secret": hash(getenv("SERVER_SECRET")).decode()
+			"vk_id": vk_id,
+			"secret": hash(getenv("server_secret")).decode()
 		}
-		async with Client(
-			get_config("main_config")["server_host"],
-			get_config("main_config")["server_port"],
-			getenv("RCON_PASS")
-		) as rcon:
-			answer = await rcon.send_cmd(
-				"/connector " + b64encode(dumps(command).encode()).decode()
-			)
+		answer = await send_cmd("/connector " + b64encode(dumps(command).encode()).decode())
 		
-		return loads(answer[0].replace("\r", ""))
+		return answer
 	except Exception as e:
 		return None

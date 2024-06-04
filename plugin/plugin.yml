@@ -1,0 +1,15 @@
+name: Telegram-MCBE
+version: 0.2.51-beta
+description: "Minecraft BE x Telegram"
+api: 5.0.0
+main: Taskovich\VkConnector\Main
+
+permissions:
+  vkconnector.secret:
+    default: op
+  vkconnector.link:
+    default: true
+
+depend:
+  - PlayedTime
+  - RconServer

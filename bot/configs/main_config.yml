@@ -1,8 +1,8 @@
-# IP и порт для принятия запросов
+# IP and port for accepting requests
 host: "127.0.0.1"
 port: 8000
 
-# IP и порт сервера
+# Server IP and port
 server_host: "127.0.0.1"
 server_port: 19132
-# RCON пароль настраивается в .env
+# The RCON password is configured in the .env
