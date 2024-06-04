@@ -7,10 +7,12 @@ logger.add(stderr, level = "INFO")
 def run_fastapi() -> None:
 	from fastapi import FastAPI
 	from handlers.routers import default_rt
+	from managers.configs_manager import config
 	from uvicorn import run
 	app = FastAPI()
 	app.include_router(default_rt)
-	run(app, host = "127.0.0.1", port = 8000, access_log = False)
+	host = config("main_config")
+	run(app, host = host["host"], port = host["port"], access_log = False)
 
 def run_vkbottle() -> None:
 	from asyncio import run
