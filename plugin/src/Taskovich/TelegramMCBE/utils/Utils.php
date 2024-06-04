@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector\utils;
+namespace Taskovich\TelegramMCBE\utils;
 
 use pocketmine\Server;
 use pocketmine\player\Player;

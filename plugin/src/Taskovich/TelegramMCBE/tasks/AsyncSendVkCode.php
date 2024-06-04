@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector\tasks;
+namespace Taskovich\TelegramMCBE\tasks;
 
-use Taskovich\VkConnector\Main;
-use Taskovich\VkConnector\utils\Requests;
+use Taskovich\TelegramMCBE\Main;
+use Taskovich\TelegramMCBE\utils\Requests;
 use pocketmine\Server;
 use pocketmine\scheduler\AsyncTask;
 

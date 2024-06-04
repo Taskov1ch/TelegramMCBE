@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector\commands;
+namespace Taskovich\TelegramMCBE\commands;
 
-use Taskovich\VkConnector\Main;
-use Taskovich\VkConnector\tasks\AsyncSendVkCode;
-use Taskovich\VkConnector\utils\Utils;
+use Taskovich\TelegramMCBE\Main;
+use Taskovich\TelegramMCBE\tasks\AsyncSendVkCode;
+use Taskovich\TelegramMCBE\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
 
-class LinkToVkCommand extends Command
+class LinkCommand extends Command
 {
 
-	private const COMMAND = "vk";
-	private const DESCRIPTION = "Привязать аккаунт к ВК";
-	private const PERMISSION = "vkconnector.link";
+	private const COMMAND = "tg";
+	private const DESCRIPTION = "Link your account to Telegram";
+	private const PERMISSION = "tgmc.link";
 
 	public function __construct(Main $main)
 	{

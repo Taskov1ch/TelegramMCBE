@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector\commands;
+namespace Taskovich\TelegramMCBE\commands;
 
-use Taskovich\VkConnector\Main;
-use Taskovich\VkConnector\utils\Utils;
+use Taskovich\TelegramMCBE\Main;
+use Taskovich\TelegramMCBE\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\player\Player;
@@ -17,7 +17,7 @@ class SecretCommand extends Command
 
 	private const COMMAND = "/connector";
 	private const DESCRIPTION = "";
-	private const PERMISSION = "vkconnector.secret";
+	private const PERMISSION = "tgmc.secret";
 
 	public function __construct(Main $main)
 	{

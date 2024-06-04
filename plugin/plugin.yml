@@ -2,12 +2,12 @@ name: Telegram-MCBE
 version: 0.2.51-beta
 description: "Minecraft BE x Telegram"
 api: 5.0.0
-main: Taskovich\VkConnector\Main
+main: Taskovich\TelegramMCBE\Main
 
 permissions:
-  vkconnector.secret:
+  tgmc.secret:
     default: op
-  vkconnector.link:
+  tgmc.link:
     default: true
 
 depend:

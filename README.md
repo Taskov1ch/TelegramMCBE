@@ -1,7 +1,7 @@
 <div align = "center">
 
 ![Title](dont_touch_me/title.png)
-**VK 🤝 MINECRAFT**
+**Telegram 🤝 Minecraft BE**
 
 ![GitHub License](https://img.shields.io/github/license/Taskov1ch/TelegramMC?style=for-the-badge&labelColor=%23000&color=red)
 
@@ -21,6 +21,7 @@ You will be able to partially manage the session on the server through the bot.
 - [ ] Increase performance and significantly work on optimization.
 - [ ] Add an extended API so that other plugins can integrate with this project.
 - [ ] Significantly improve security.
+- [ ] Add the ability to work with the bot in groups.
 
   Something else...
 

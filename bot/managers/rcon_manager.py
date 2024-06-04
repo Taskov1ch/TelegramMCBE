@@ -12,8 +12,8 @@ load_dotenv()
 async def send_cmd(command: str) -> Optional[str]:
 	try:
 		async with Client(
-			get_config("main_config")["server_host"],
-			get_config("main_config")["server_port"],
+			get_config("main")["server_host"],
+			get_config("main")["server_port"],
 			getenv("rcon_pass")
 		) as rcon:
 			answer = await rcon.send_cmd(command)

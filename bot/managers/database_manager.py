@@ -11,7 +11,7 @@ class Database:
 			await c.execute("""
 				CREATE TABLE IF NOT EXISTS linked (
 					player_id TEXT, 
-					vk_id TEXT
+					tg_id TEXT
 				)
 			""")
 			await c.execute("""
@@ -32,10 +32,10 @@ class Database:
 		await conn.close()
 		return row is not None
 
-	async def is_linked_vk(self, vk_id: int) -> bool:
+	async def is_linked_tg(self, tg_id: int) -> bool:
 		conn = await self.get_connection()
 		async with conn.cursor() as c:
-			await c.execute("SELECT * FROM linked WHERE vk_id = ?", (vk_id,))
+			await c.execute("SELECT * FROM linked WHERE tg_id = ?", (tg_id,))
 			row = await c.fetchone()
 		await conn.close()
 		return row is not None
@@ -49,18 +49,18 @@ class LinkedPlayers(Database):
 			await conn.commit()
 		await conn.close()
 
-	async def get_vk_id(self, player_id: str) -> Optional[str]:
+	async def get_tg_id(self, player_id: str) -> Optional[str]:
 		conn = await self.get_connection()
 		async with conn.cursor() as c:
-			await c.execute("SELECT vk_id FROM linked WHERE player_id = ?", (player_id,))
+			await c.execute("SELECT tg_id FROM linked WHERE player_id = ?", (player_id,))
 			row = await c.fetchone()
 		await conn.close()
 		return row[0] if row else None
 
-	async def get_player_id(self, vk_id: str) -> Optional[str]:
+	async def get_player_id(self, tg_id: str) -> Optional[str]:
 		conn = await self.get_connection()
 		async with conn.cursor() as c:
-			await c.execute("SELECT player_id FROM linked WHERE vk_id = ?", (vk_id,))
+			await c.execute("SELECT player_id FROM linked WHERE tg_id = ?", (tg_id,))
 			row = await c.fetchone()
 		await conn.close()
 		return row[0] if row else None
@@ -68,7 +68,7 @@ class LinkedPlayers(Database):
 	async def get_all_players(self) -> list:
 		conn = await self.get_connection()
 		async with conn.cursor() as c:
-			await c.execute("SELECT player_id, vk_id FROM linked")
+			await c.execute("SELECT player_id, tg_id FROM linked")
 			rows = await c.fetchall()
 		await conn.close()
 		return rows
@@ -131,7 +131,7 @@ class NotLinkedPlayers(Database):
 		await conn.close()
 		return None
 
-	async def link(self, player_id: str, vk_id: str, code: str) -> bool:
+	async def link(self, player_id: str, tg_id: str, code: str) -> bool:
 		conn = await self.get_connection()
 		async with conn.cursor() as c:
 			await c.execute("SELECT code, timestamp FROM codes WHERE player_id = ?", (player_id,))
@@ -139,7 +139,7 @@ class NotLinkedPlayers(Database):
 			if not row or code != row[0] or self.expired(row[1]):
 				return False
 
-			await c.execute("INSERT INTO linked (player_id, vk_id) VALUES (?, ?)", (player_id, vk_id))
+			await c.execute("INSERT INTO linked (player_id, tg_id) VALUES (?, ?)", (player_id, tg_id))
 			await c.execute("DELETE FROM codes WHERE player_id = ?", (player_id,))
 			await conn.commit()
 		await conn.close()

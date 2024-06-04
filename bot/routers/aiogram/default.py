@@ -1,24 +1,22 @@
 from .keyboards import main_keyboard, empty_keyboard
-from .rules import IsNotLinked, Action
+from .rules import IsPrivateMessage, IsNotLinked, Action
 from dotenv import load_dotenv
 from managers import configs_manager, database_manager, rcon_manager
 from os import getenv
 from typing import Optional
-from vkbottle.bot import BotLabeler, Message
+from aiogram import Router, F
+from aiogram.types import Message
 
 load_dotenv()
-lb = BotLabeler()
+rt = Router()
 linked_players = database_manager.LinkedPlayers()
 not_linked_players = database_manager.NotLinkedPlayers()
 not_linked_messages = configs_manager.get_config("messages")["not_linked"]
 linked_messages = configs_manager.get_config("messages")["linked"]
 
 async def action(action: str, message: Message) -> Optional[dict]:
-	data = await rcon_manager.response(
-		action,
-		await linked_players.get_player_id(message.from_id),
-		message.from_id
-	)
+	player_id = await linked_players.get_player_id(message.from_user.id)
+	data = await rcon_manager.response(action, player_id, message.from_user.id)
 
 	if not data:
 		await message.answer(linked_messages["server_error"])
@@ -29,44 +27,39 @@ async def action(action: str, message: Message) -> Optional[dict]:
 
 	return None
 
-@lb.private_message(IsNotLinked())
+@rt.message(IsPrivateMessage(), IsNotLinked())
 async def try_link(message: Message) -> None:
 	if len(message.text) == 0:
 		return
 
 	player_id = await not_linked_players.get_player_id(message.text)
 
-	if not player_id or not await not_linked_players.link(
-		player_id,
-		message.from_id,
-		message.text
-	):
-		await message.answer(not_linked_messages["code_not_found"], keyboard = empty_keyboard)
+	if not player_id or not await not_linked_players.link(player_id, message.from_user.id, message.text):
+		await message.answer(not_linked_messages["code_not_found"], reply_markup=empty_keyboard)
 		return
 
-	await message.answer(not_linked_messages["success_link"], keyboard = main_keyboard)
+	await message.answer(not_linked_messages["success_link"], reply_markup=main_keyboard)
 	await action("new_link", message)
 
-@lb.private_message(Action("get_session_info"))
+@rt.message(IsPrivateMessage(), Action("get_session_info"))
 async def session_info(message: Message) -> None:
 	data = await action("get_session_info", message)
 
 	if not data:
 		return
 
-	played = data["played"];
+	played = data["played"]
 	await message.answer(linked_messages["session_info"].format(
 			ip = data["ip"],
 			os = data["os"],
 			device = data["model"],
-			h = data["played"][0],
-			m = data["played"][1],
-			s = data["played"][2]
+			h = played[0],
+			m = played[1],
+			s = played[2]
 		)
 	)
 
-
-@lb.private_message(Action("close_session"))
+@rt.message(IsPrivateMessage(), Action("close_session"))
 async def close_session(message: Message) -> None:
 	data = await action("close_session", message)
 
@@ -75,12 +68,12 @@ async def close_session(message: Message) -> None:
 
 	await message.answer(linked_messages["close_session"])
 
-@lb.private_message(Action("unlink_account"))
+@rt.message(IsPrivateMessage(), Action("unlink_account"))
 async def unlink(message: Message) -> None:
 	await action("unlink", message)
-	await linked_players.unlink(await linked_players.get_player_id(message.from_id))
-	await message.answer(linked_messages["unlink"], keyboard = empty_keyboard)
+	await linked_players.unlink(await linked_players.get_player_id(message.from_user.id))
+	await message.answer(linked_messages["unlink"], reply_markup = empty_keyboard)
 
-@lb.private_message()
+@rt.message(IsPrivateMessage())
 async def unknown(message: Message) -> None:
-	await message.answer(linked_messages["unknown"], keyboard = main_keyboard)
+	await message.answer(linked_messages["unknown"], reply_markup = main_keyboard)

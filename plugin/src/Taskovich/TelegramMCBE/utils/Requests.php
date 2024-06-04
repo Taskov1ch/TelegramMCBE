@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector\utils;
+namespace Taskovich\TelegramMCBE\utils;
 
 class Requests
 {

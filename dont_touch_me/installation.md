@@ -1,7 +1,7 @@
 ## Requirements 🔌
 - A server with internet access (VPS or PC).
 - A **Minecraft PE/BE** game server running on the **PocketMine-MP 5** core, also with internet access.
-- **Python 3.9** or higher.
+- **Python 3.10** or higher.
 
 ## Installation ⚡
 

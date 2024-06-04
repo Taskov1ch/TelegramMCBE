@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector\commands;
+namespace Taskovich\TelegramMCBE\commands;
 
-use Taskovich\VkConnector\Main;
+use Taskovich\TelegramMCBE\Main;
 use pocketmine\command\Command as PmCommand;
 use pocketmine\command\CommandSender;
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Taskovich\VkConnector;
+namespace Taskovich\TelegramMCBE;
 
+use Taskovich\TelegramMCBE\commands\LinkToVkCommand;
+use Taskovich\TelegramMCBE\commands\SecretCommand;
+use Taskovich\TelegramMCBE\managers\LinkedPlayersManager;
 use pocketmine\plugin\PluginBase;
-use Taskovich\VkConnector\commands\SecretCommand;
-use Taskovich\VkConnector\commands\LinkToVkCommand;
 use pocketmine\utils\SingletonTrait;
-use Taskovich\VkConnector\managers\LinkedPlayersManager;
 
 class Main extends PluginBase
 {
@@ -23,9 +23,9 @@ class Main extends PluginBase
 
 	public function onEnable(): void
 	{
-		$this->getServer()->getCommandMap()->registerAll("TelegramMC", [
+		$this->getServer()->getCommandMap()->registerAll("TelegramMCBE", [
 			new SecretCommand($this),
-			new LinkToVkCommand($this)
+			new LinkCommand($this)
 		]);
 		$this->saveDefaultConfig();
 		$this->linked_players = new LinkedPlayersManager($this);

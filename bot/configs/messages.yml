@@ -1,37 +1,37 @@
-# Сообщения для непривязанных пользователей
+# Messages for unlinked users
 not_linked:
 
-  # Код не найден
+  # Code not found
   code_not_found: |-
-    Не удалось найти код...
-    Для получения кода пропишите команду /vk на сервере.
+    Failed to find the code...
+    To get the code, type the /tg command on the server.
 
-  # Успешное подключение
-  success_link: "Успешная привязка!"
+  # Successful linking
+  success_link: "Successful linking!"
 
-# Сообщения для привязанных пользователей
+# Messages for linked users
 linked:
 
-  # Если сервер не отвечает
-  server_error: "Не удалось связаться с сервером, кажись не поладки :("
+  # If the server does not respond
+  server_error: "Failed to contact the server, seems to be a problem :("
 
-  # Если у пользователя нет сессии
-  not_session: "У вас нет активной сессии на сервере."
+  # If the user has no session
+  not_session: "You do not have an active session on the server."
 
-  # Информация о сессии
+  # Session information
   session_info: |-
-    Информация о сессии:
+    Session info:
 
-    IP адрес: {ip}
-    ОС: {os}
-    Модель устройства: {device}
-    Время сессии: {h}ч. {m}м. {s}с.
+    IP address: {ip}
+    OS: {os}
+    Device model: {device}
+    Session time: {h}h. {m}m. {s}s.
 
-  # Сессия успешна закрыта
-  close_session: "Вы успешно завершили сессию на сервере."
+  # Session successfully closed
+  close_session: "You have successfully closed the session on the server."
 
-  # Успешная отвязка
-  unlink: "Вы успешно отвязали данный аккаунт от аккаунта на сервере :("
+  # Successful unlink
+  unlink: "You have successfully unlinked this account from the server :("
 
-  # Неизвестная команда
-  unknown: "Я вас не особо понял..."
+  # Unknown command
+  unknown: "I don't really understand you..."
