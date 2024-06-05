@@ -1,5 +1,5 @@
 name: Telegram-MCBE
-version: 0.2.51-beta
+version: 0.3.1-beta
 description: "Minecraft BE x Telegram"
 api: 5.0.0
 main: Taskovich\TelegramMCBE\Main

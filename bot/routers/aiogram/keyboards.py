@@ -1,15 +1,16 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButtonб ReplyKeyboardRemove
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from managers.configs_manager import get_config
 
 main_keyboard = ReplyKeyboardMarkup(
 	keyboard = [
 		[
-			KeyboardButton(text = "Информация о сессии")
+			KeyboardButton(text = get_config("keyboards")["session_info"])
 		],
 		[
-			KeyboardButton(text = "Закрыть сессию")
+			KeyboardButton(text = get_config("keyboards")["close_session"])
 		],
 		[
-			KeyboardButton(text = "Отвязать аккаунт")
+			KeyboardButton(text = get_config("keyboards")["unlink_account"])
 		]
 	],
 	resize_keyboard = True

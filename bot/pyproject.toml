@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "telegram-mcbe"
-version = "0.2.25-beta"
+version = "0.3.19-beta"
 description = "ВК 🤝 MCPE/BE"
 authors = ["Taskovich"]
 license = "MIT"

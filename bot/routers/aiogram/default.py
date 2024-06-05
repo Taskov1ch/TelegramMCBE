@@ -1,5 +1,5 @@
 from .keyboards import main_keyboard, empty_keyboard
-from .rules import IsPrivateMessage, IsNotLinked, Action
+from .filters import IsPrivateMessage, IsNotLinked, Action
 from dotenv import load_dotenv
 from managers import configs_manager, database_manager, rcon_manager
 from os import getenv
@@ -29,16 +29,16 @@ async def action(action: str, message: Message) -> Optional[dict]:
 
 @rt.message(IsPrivateMessage(), IsNotLinked())
 async def try_link(message: Message) -> None:
-	if len(message.text) == 0:
+	if not(message.text) or len(message.text) == 0:
 		return
 
 	player_id = await not_linked_players.get_player_id(message.text)
 
 	if not player_id or not await not_linked_players.link(player_id, message.from_user.id, message.text):
-		await message.answer(not_linked_messages["code_not_found"], reply_markup=empty_keyboard)
+		await message.answer(not_linked_messages["code_not_found"], reply_markup = empty_keyboard)
 		return
 
-	await message.answer(not_linked_messages["success_link"], reply_markup=main_keyboard)
+	await message.answer(not_linked_messages["success_link"], reply_markup = main_keyboard)
 	await action("new_link", message)
 
 @rt.message(IsPrivateMessage(), Action("get_session_info"))

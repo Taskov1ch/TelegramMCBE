@@ -1,6 +1,6 @@
 # IP and port for accepting requests
 host: "127.0.0.1"
-port: 8001
+port: 8000
 
 # Server IP and port
 server_host: "127.0.0.1"

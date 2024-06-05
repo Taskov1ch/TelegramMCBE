@@ -3,29 +3,18 @@ from dotenv import load_dotenv
 from fastapi import APIRouter, Depends
 from managers.database_manager import LinkedPlayers, NotLinkedPlayers
 from os import getenv
-from vkbottle import API
 
 load_dotenv()
 rt = APIRouter()
 linked_players = LinkedPlayers()
 not_linked_players = NotLinkedPlayers()
-vk_api = API(token = getenv("bot_token"))
 
 @rt.get("/tgmc/try_link", dependencies = [Depends(verify_secret)])
 async def try_link(id: str) -> dict:
 	id = id.lower()
 	
 	if await linked_players.is_linked_player(id.lower()):
-		# user = (await vk_api.users.get(user_ids = await linked_players.get_vk_id(id)))[0]
-
-		if "deactivated" in user:
-			await linked_players.unlink(id)
-		else:
-			# full_name = user.first_name + " " + user.last_name
-			return {
-				"status": "linked",
-				# "full_name": full_name
-			}
+		return {"status": "linked"}
 
 	return {
 		"status": "not_linked",

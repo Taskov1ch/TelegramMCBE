@@ -3,11 +3,11 @@
 ![Title](dont_touch_me/title.png)
 **Telegram 🤝 Minecraft BE**
 
-![GitHub License](https://img.shields.io/github/license/Taskov1ch/TelegramMC?style=for-the-badge&labelColor=%23000&color=red)
+![GitHub License](https://img.shields.io/github/license/Taskov1ch/TelegramMCBE?style=for-the-badge&labelColor=%23000&color=red)
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Taskov1ch/TelegramMC?style=for-the-badge&logo=github)
-![GitHub repo size](https://img.shields.io/github/repo-size/Taskov1ch/TelegramMC?style=for-the-badge&logo=github)
-![GitHub Release](https://img.shields.io/github/v/release/Taskov1ch/TelegramMC?style=for-the-badge&logo=github)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)
+![GitHub repo size](https://img.shields.io/github/repo-size/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)
+![GitHub Release](https://img.shields.io/github/v/release/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)
 
 </div>
 
@@ -26,7 +26,7 @@ You will be able to partially manage the session on the server through the bot.
   Something else...
 
 ## Warning ⚠️
-This project is in the testing phase and may not work correctly in some areas! If you find an error or issue, please report it in the **[ISSUES](https://github.com/Taskov1ch/TelegramMC/issues)** section. Thank you for your understanding!
+This project is in the testing phase and may not work correctly in some areas! If you find an error or issue, please report it in the **[ISSUES](https://github.com/Taskov1ch/TelegramMCBE/issues)** section. Thank you for your understanding!
 
 ## Useful Links 🔗
 - [Installation Guide](dont_touch_me/installation.md)

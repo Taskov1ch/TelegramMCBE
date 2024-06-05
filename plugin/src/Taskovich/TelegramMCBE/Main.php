@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Taskovich\TelegramMCBE;
 
-use Taskovich\TelegramMCBE\commands\LinkToVkCommand;
+use Taskovich\TelegramMCBE\commands\LinkCommand;
 use Taskovich\TelegramMCBE\commands\SecretCommand;
 use Taskovich\TelegramMCBE\managers\LinkedPlayersManager;
 use pocketmine\plugin\PluginBase;

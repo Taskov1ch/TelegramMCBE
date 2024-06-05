@@ -21,8 +21,8 @@ messages:
 
     # Successful
     success: |-
-      Your vk code: {code}
-      Enter it in our bot: vk.com/bot_name.
+      Your Telegram code: {code}
+      Enter it in our bot: t.me/TaskovichBot
       The code will be active for 30 minutes, hurry up.
 
     # Bot error

@@ -1,7 +1,8 @@
+from aiogram.enums import ChatType
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
+from managers.configs_manager import get_config
 from managers.database_manager import LinkedPlayers, NotLinkedPlayers
-from aiogram.enums import ChatType
 
 linked_players = LinkedPlayers()
 not_linked_players = NotLinkedPlayers()
@@ -16,10 +17,10 @@ class IsNotLinked(BaseFilter):
 
 class Action(BaseFilter):
 	actions = {
-		"get_session_info": "Информация о сессии",
-		"close_session": "Закрыть сессию",
-		"unlink_account": "Отвязать аккаунт"
-	};
+		"get_session_info": get_config("keyboards")["session_info"],
+		"close_session": get_config("keyboards")["close_session"],
+		"unlink_account": get_config("keyboards")["unlink_account"]
+	}
 
 	def __init__(self, action: str):
 		self.action = action
