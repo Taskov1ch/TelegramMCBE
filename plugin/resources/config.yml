@@ -1,0 +1,40 @@
+# IP address and port where to send requests (bot side address and port)
+# (if you installed the bot on a different address or port - change it)
+bot_endpoint: "http://127.0.0.1:8000"
+
+# Server secret password
+server_secret: "Lunox my queen :)"
+
+# Secret bot password
+bot_secret: "Kagura my queen xD"
+
+
+
+# Messages are configured here
+messages:
+
+  # Messages related to the code
+  vk_code:
+
+    # Message about the start of the process
+    processing: "One second..."
+
+    # Successful
+    success: |-
+      Your Telegram code: {code}
+      Enter it in our bot: t.me/TaskovichBot
+      The code will be active for 30 minutes, hurry up.
+
+    # Bot error
+    error: "Failed to get the code... Most likely technical work :("
+
+    # Already linked
+    linked: "Your account is already linked."
+
+  # Message related to closing session
+  close_session:
+
+    # Kick message
+    kick_msg: |-
+      Your session was closed via Telegram
+      If it wasn't you, then all is fair xD

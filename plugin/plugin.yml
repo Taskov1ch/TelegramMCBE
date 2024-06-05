@@ -1,0 +1,15 @@
+name: Telegram-MCBE
+version: 0.3.1-beta
+description: "Minecraft BE x Telegram"
+api: 5.0.0
+main: Taskovich\TelegramMCBE\Main
+
+permissions:
+  tgmc.secret:
+    default: op
+  tgmc.link:
+    default: true
+
+depend:
+  - PlayedTime
+  - RconServer

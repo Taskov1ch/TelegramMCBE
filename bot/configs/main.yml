@@ -1,0 +1,8 @@
+# IP and port for accepting requests
+host: "127.0.0.1"
+port: 8000
+
+# Server IP and port
+server_host: "127.0.0.1"
+server_port: 19132
+# The RCON password is configured in the .env

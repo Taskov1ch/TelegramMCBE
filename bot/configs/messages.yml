@@ -1,0 +1,37 @@
+# Messages for unlinked users
+not_linked:
+
+  # Code not found
+  code_not_found: |-
+    Failed to find the code...
+    To get the code, type the /tg command on the server.
+
+  # Successful linking
+  success_link: "Successful linking!"
+
+# Messages for linked users
+linked:
+
+  # If the server does not respond
+  server_error: "Failed to contact the server, seems to be a problem :("
+
+  # If the user has no session
+  not_session: "You do not have an active session on the server."
+
+  # Session information
+  session_info: |-
+    Session info:
+
+    IP address: {ip}
+    OS: {os}
+    Device model: {device}
+    Session time: {h}h. {m}m. {s}s.
+
+  # Session successfully closed
+  close_session: "You have successfully closed the session on the server."
+
+  # Successful unlink
+  unlink: "You have successfully unlinked this account from the server :("
+
+  # Unknown command
+  unknown: "I don't really understand you..."
