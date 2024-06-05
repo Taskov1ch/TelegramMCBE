@@ -30,4 +30,3 @@ This project is in the testing phase and may not work correctly in some areas! I
 
 ## Useful Links 🔗
 - [Installation Guide](dont_touch_me/installation.md)
-- [Screenshots]()
