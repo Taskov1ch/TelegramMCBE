@@ -1,7 +1,7 @@
 <div align = "center">
 
-![Title](dont_touch_me/title.png)
-**Telegram 🤝 Minecraft BE**
+# TelegramMCBE
+**Telegram x Minecraft BE**
 
 ![GitHub License](https://img.shields.io/github/license/Taskov1ch/TelegramMCBE?style=for-the-badge&labelColor=%23000&color=red)
 

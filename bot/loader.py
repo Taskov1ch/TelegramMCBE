@@ -1,5 +1,4 @@
 from loguru import logger
-from sys import stderr
 
 def run_fastapi() -> None:
 	from contextlib import asynccontextmanager
@@ -39,7 +38,7 @@ def run_aiogram() -> None:
 		await dp.start_polling(bot)
 
 	run(async_run())
-	
+
 def run() -> None:
 	from concurrent.futures import ProcessPoolExecutor
 	with ProcessPoolExecutor() as executor:

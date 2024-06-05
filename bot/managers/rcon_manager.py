@@ -17,9 +17,9 @@ async def send_cmd(command: str) -> Optional[str]:
 			getenv("rcon_pass")
 		) as rcon:
 			answer = await rcon.send_cmd(command)
-		
+
 		return loads(answer[0].replace("\r", ""))
-	except Exception as e:
+	except Exception:
 		return None
 
 async def response(action: str, player_id: str = "", vk_id: int = 0) -> Optional[dict]:
@@ -31,7 +31,7 @@ async def response(action: str, player_id: str = "", vk_id: int = 0) -> Optional
 			"secret": hash(getenv("server_secret")).decode()
 		}
 		answer = await send_cmd("/connector " + b64encode(dumps(command).encode()).decode())
-		
+
 		return answer
-	except Exception as e:
+	except Exception:
 		return None

@@ -102,7 +102,7 @@ class NotLinkedPlayers(Database):
 				if not existing_code_row:
 					break
 
-				existing_code, existing_timestamp = existing_code_row
+				_, existing_timestamp = existing_code_row
 				if self.expired(existing_timestamp):
 					await c.execute("DELETE FROM codes WHERE code = ?", (new_code,))
 					await conn.commit()
