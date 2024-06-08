@@ -1,12 +1,24 @@
 from os import getcwd
-from typing import Union
+from pathlib import Path
+from typing import Any
 from yaml import safe_load
 
-path = getcwd() + "/configs"
+class Config:
+	configs_path = Path(getcwd(), "configs")
 
-def get_config(file_name: str) -> Union[dict, list, None]:
-	try:
-		with open(f"{path}/{file_name}.yml", "r", encoding = "utf-8") as file:
-			return safe_load(file)
-	except Exception:
-		return None
+	def __init__(self, file_name: str) -> None:
+		self.path = Path(file_name + ".yml")
+
+		with open(self.path, "r", encoding = "utf-8") as file:
+			self.content = self._get_object(safe_load(file))
+
+	def _get_object(self, data: dict) -> Any:
+		if not isinstance(data, dict):
+			return data
+
+		obj = type("Config", (), {})
+
+		for key, value in data.items():
+			setattr(obj, key, self._get_object(value))
+
+		return obj
