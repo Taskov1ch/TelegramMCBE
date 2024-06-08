@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from managers import configs_manager, database_manager, rcon_manager
 from os import getenv
 from typing import Optional
-from aiogram import Router, F
+from aiogram import Router
 from aiogram.types import Message
 
 load_dotenv()

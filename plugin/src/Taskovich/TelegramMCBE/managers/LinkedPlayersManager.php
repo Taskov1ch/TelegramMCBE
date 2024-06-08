@@ -41,7 +41,7 @@ class LinkedPlayersManager
 		return isset($this->linked_players[$id]);
 	}
 
-	public function getVkId(string $id): ?int
+	public function getTelegramId(string $id): ?int
 	{
 		return $this->linked_players[$id] ?? null;
 	}

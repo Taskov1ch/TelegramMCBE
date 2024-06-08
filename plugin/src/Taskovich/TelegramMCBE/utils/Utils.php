@@ -7,7 +7,8 @@ namespace Taskovich\TelegramMCBE\utils;
 use pocketmine\Server;
 use pocketmine\player\Player;
 
-class Utils {
+class Utils
+{
 
 	public static function onlineModeEnabled(): bool
 	{
