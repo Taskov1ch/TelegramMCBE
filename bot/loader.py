@@ -3,11 +3,11 @@ from loguru import logger
 def run_fastapi() -> None:
 	from contextlib import asynccontextmanager
 	from fastapi import FastAPI
-	from managers.configs_manager import get_config
+	from managers import Config
 	from routers.fastapi import default_rt
 	from uvicorn import run
-	host = get_config("main")["host"]
-	port = get_config("main")["port"]
+	config = Config("main").content
+	host, port = config.host, config.port
 
 	@asynccontextmanager
 	async def lifespan(app: FastAPI) -> None:
@@ -44,6 +44,8 @@ def run() -> None:
 	with ProcessPoolExecutor() as executor:
 		executor.submit(run_aiogram)
 		executor.submit(run_fastapi)
+	# run_aiogram()
+	# run_fastapi()
 
 if __name__ == "__main__":
 	try:
