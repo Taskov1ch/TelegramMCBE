@@ -22,12 +22,12 @@ async def send_cmd(command: str) -> Optional[str]:
 	except Exception:
 		return None
 
-async def response(action: str, player_id: str = "", vk_id: int = 0) -> Optional[dict]:
+async def response(action: str, player_id: str = "", tg_id: int = 0) -> Optional[dict]:
 	try:
 		command = {
 			"method": action,
 			"player": player_id,
-			"vk_id": vk_id,
+			"tg_id": tg_id,
 			"secret": hash(getenv("server_secret")).decode()
 		}
 		answer = await send_cmd("/connector " + b64encode(dumps(command).encode()).decode())

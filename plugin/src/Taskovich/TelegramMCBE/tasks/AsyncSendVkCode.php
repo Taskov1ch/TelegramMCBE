@@ -9,7 +9,7 @@ use Taskovich\TelegramMCBE\utils\Requests;
 use pocketmine\Server;
 use pocketmine\scheduler\AsyncTask;
 
-class AsyncSendVkCode extends AsyncTask
+class AsyncSendTelegramCode extends AsyncTask
 {
 
 	public function __construct(
