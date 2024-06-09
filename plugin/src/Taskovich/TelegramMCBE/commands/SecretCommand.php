@@ -102,7 +102,7 @@ class SecretCommand extends Command
 
 			case "new_link":
 				$this->getPlugin()->getLinkedPlayersManager()->addLink(
-					$args["player"], $args["tg_id"]);
+					$args["player"], $args["vk_id"]);
 				$sender->sendMessage(json_encode(["status" => "success"]));
 			break;
 

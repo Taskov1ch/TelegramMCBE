@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Taskovich\TelegramMCBE\commands;
 
 use Taskovich\TelegramMCBE\Main;
-use Taskovich\TelegramMCBE\tasks\AsyncSendTelegramCode;
+use Taskovich\TelegramMCBE\tasks\AsyncSendTgCode;
 use Taskovich\TelegramMCBE\utils\Utils;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
@@ -31,7 +31,7 @@ class LinkCommand extends Command
 
 		$config = $this->getPlugin()->getConfig();
 		$sender->sendMessage($config->get("messages")["tg_code"]["processing"]);
-		$this->getPlugin()->getServer()->getAsyncPool()->submitTask(new AsyncSendTelegramCode(
+		$this->getPlugin()->getServer()->getAsyncPool()->submitTask(new AsyncSendTgCode(
 			$config->get("bot_endpoint"),
 			$config->get("bot_secret"),
 			strtolower($sender->getName()),
