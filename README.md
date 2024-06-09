@@ -5,9 +5,9 @@
 
 ![GitHub License](https://img.shields.io/github/license/Taskov1ch/TelegramMCBE?style=for-the-badge&labelColor=%23000&color=red)
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)
-![GitHub repo size](https://img.shields.io/github/repo-size/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)
-![GitHub Release](https://img.shields.io/github/v/release/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/t/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)](https://github.com/Taskov1ch/TelegramMCBE)
+[![GitHub repo size](https://img.shields.io/github/repo-size/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)](https://github.com/Taskov1ch/TelegramMCBE)
+[![GitHub Release](https://img.shields.io/github/v/release/Taskov1ch/TelegramMCBE?style=for-the-badge&logo=github)](https://github.com/Taskov1ch/TelegramMCBE)
 
 </div>
 
