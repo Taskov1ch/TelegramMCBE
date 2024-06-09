@@ -1,8 +1,8 @@
 from aiogram.enums import ChatType
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
+from managers.database import LinkedPlayers, NotLinkedPlayers
 from utils import Config
-from managers.database_manager import LinkedPlayers, NotLinkedPlayers
 
 linked_players = LinkedPlayers()
 not_linked_players = NotLinkedPlayers()

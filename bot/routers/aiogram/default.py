@@ -1,22 +1,22 @@
-from .keyboards import main_keyboard, empty_keyboard
 from .filters import IsPrivateMessage, IsNotLinked, Action
-from dotenv import load_dotenv
-from managers import database_manager, rcon_manager
-from utils import Config
-from os import getenv
-from typing import Optional
+from .keyboards import main_keyboard, empty_keyboard
 from aiogram import Router
 from aiogram.types import Message
+from dotenv import load_dotenv
+from managers import database, rcon
+from os import getenv
+from typing import Optional
+from utils import Config
 
 load_dotenv()
 rt = Router()
-linked_players = database_manager.LinkedPlayers()
-not_linked_players = database_manager.NotLinkedPlayers()
+linked_players = database.LinkedPlayers()
+not_linked_players = database.NotLinkedPlayers()
 messages = Config("messages").content
 
 async def action(action: str, message: Message) -> Optional[dict]:
 	player_id = await linked_players.get_player_id(message.from_user.id)
-	data = await rcon_manager.response(action, player_id, message.from_user.id)
+	data = await rcon.response(action, player_id, message.from_user.id)
 
 	if not data:
 		await message.answer(messages.linked.server_error)

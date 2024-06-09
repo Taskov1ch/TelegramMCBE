@@ -1,7 +1,7 @@
 from .rules import verify_secret
 from dotenv import load_dotenv
 from fastapi import APIRouter, Depends
-from managers.database_manager import LinkedPlayers, NotLinkedPlayers
+from managers.database import LinkedPlayers, NotLinkedPlayers
 from os import getenv
 
 load_dotenv()

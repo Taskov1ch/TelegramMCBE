@@ -2,9 +2,9 @@ from aiomcrcon import Client
 from base64 import b64encode
 from dotenv import load_dotenv
 from json import loads, dumps
-from utils import (Config, bcrypt_hash as hash)
 from os import getenv
 from typing import Optional
+from utils import (Config, bcrypt_hash as hash)
 
 load_dotenv()
 
