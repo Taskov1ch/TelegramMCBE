@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "telegram-mcbe"
-version = "0.3.19-beta"
+version = "0.3.26-beta"
 description = "Telegram x Minecraft BE"
 authors = ["Taskovich"]
 license = "MIT"

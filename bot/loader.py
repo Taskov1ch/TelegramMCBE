@@ -1,18 +1,23 @@
 from loguru import logger
 
+logger.remove()
+format = "<cyan>[{time:DD.MM.YYYY | HH:mm:ss}]</cyan> (<level>{level}</level>) > {message}"
+logger.add(lambda msg: print(msg, end = ""), format = format, colorize = True)
+
 def run_fastapi() -> None:
 	from contextlib import asynccontextmanager
 	from fastapi import FastAPI
-	from managers.configs_manager import get_config
 	from routers.fastapi import default_rt
+	from utils import Config
 	from uvicorn import run
-	host = get_config("main")["host"]
-	port = get_config("main")["port"]
+	config = Config("main").content
+	host, port = config.host, config.port
 
 	@asynccontextmanager
 	async def lifespan(app: FastAPI) -> None:
 		logger.info(f"FastAPI is working. Endpoint: http://{host}:{port}")
 		yield
+		logger.info("FastAPI shutdown...")
 
 	app = FastAPI(lifespan = lifespan)
 	app.include_router(default_rt)
@@ -29,9 +34,13 @@ def run_aiogram() -> None:
 
 	async def on_startup() -> None:
 		username = (await bot.get_me()).username
-		logger.info(f"Telegram bot @{username} is working.")
+		logger.info(f"Aiogram is working. Bot username: @{username}")
+
+	async def on_shutdown() -> None:
+		logging.info("Aiogram shutdown...")
 
 	dp.startup.register(on_startup)
+	dp.shutdown.register(on_shutdown)
 
 	async def async_run() -> None:
 		await bot.delete_webhook(drop_pending_updates = True)
@@ -44,6 +53,8 @@ def run() -> None:
 	with ProcessPoolExecutor() as executor:
 		executor.submit(run_aiogram)
 		executor.submit(run_fastapi)
+	# run_aiogram()
+	# run_fastapi()
 
 if __name__ == "__main__":
 	try:
