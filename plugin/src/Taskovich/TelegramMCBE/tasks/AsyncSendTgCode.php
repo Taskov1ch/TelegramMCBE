@@ -9,7 +9,7 @@ use Taskovich\TelegramMCBE\utils\Requests;
 use pocketmine\Server;
 use pocketmine\scheduler\AsyncTask;
 
-class AsyncSendVkCode extends AsyncTask
+class AsyncSendTgCode extends AsyncTask
 {
 
 	public function __construct(
@@ -44,7 +44,7 @@ class AsyncSendVkCode extends AsyncTask
 			return;
 		}
 
-		$messages = Main::getInstance()->getConfig()->get("messages")["vk_code"];
+		$messages = Main::getInstance()->getConfig()->get("messages")["tg_code"];
 		$results = $this->getResult();
 
 		if (!$results)

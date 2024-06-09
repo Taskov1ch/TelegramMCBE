@@ -14,7 +14,7 @@ bot_secret: "Kagura my queen xD"
 messages:
 
   # Messages related to the code
-  vk_code:
+  tg_code:
 
     # Message about the start of the process
     processing: "One second..."
