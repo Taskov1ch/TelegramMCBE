@@ -3,7 +3,7 @@ from loguru import logger
 def run_fastapi() -> None:
 	from contextlib import asynccontextmanager
 	from fastapi import FastAPI
-	from managers import Config
+	from utils import Config
 	from routers.fastapi import default_rt
 	from uvicorn import run
 	config = Config("main").content

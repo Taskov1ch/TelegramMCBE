@@ -1,5 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-from managers import Config
+from utils import Config
 
 keyboards = Config("keyboards").content
 main_keyboard = ReplyKeyboardMarkup(

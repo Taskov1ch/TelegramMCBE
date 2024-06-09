@@ -2,7 +2,7 @@ from bcrypt import checkpw
 from dotenv import load_dotenv
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
-from managers import bcrypt_verify as verify
+from utils import bcrypt_verify as verify
 from os import getenv
 
 load_dotenv()

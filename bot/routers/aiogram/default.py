@@ -1,7 +1,8 @@
 from .keyboards import main_keyboard, empty_keyboard
 from .filters import IsPrivateMessage, IsNotLinked, Action
 from dotenv import load_dotenv
-from managers import Config, database_manager, rcon_manager
+from managers import database_manager, rcon_manager
+from utils import Config
 from os import getenv
 from typing import Optional
 from aiogram import Router
